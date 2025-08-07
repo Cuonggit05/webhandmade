@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Knitted Delights</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style-pure.css">
+    <style>
+        body { background: #f8fafc; font-family: 'Montserrat', sans-serif; }
+        .admin-container { max-width: 1200px; margin: 2rem auto; background: #fff; border-radius: 8px; box-shadow: 0 2px 8px #0001; padding: 2rem; }
+        .admin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
+        .admin-title { font-size: 2rem; font-weight: 700; }
+        .dashboard-cards { display: flex; gap: 2rem; margin-bottom: 2rem; }
+        .dashboard-card { flex: 1; background: #f1f5f9; border-radius: 8px; padding: 1.5rem; text-align: center; }
+        .dashboard-card h3 { margin: 0.5rem 0 0.25rem; font-size: 1.25rem; }
+        .dashboard-card .card-value { font-size: 2rem; font-weight: 700; color: #2563eb; }
+        .admin-section { margin-bottom: 2rem; }
+        .admin-section-title { font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; }
+        .product-table { width: 100%; border-collapse: collapse; }
+        .product-table th, .product-table td { padding: 0.75rem; border-bottom: 1px solid #e5e7eb; }
+        .product-table th { background: #f1f5f9; }
+        .product-table td img { width: 48px; height: 48px; object-fit: cover; border-radius: 4px; }
+        .crud-actions button { margin-right: 0.5rem; }
+        .admin-form input, .admin-form select { padding: 0.5rem; margin-right: 0.5rem; border: 1px solid #d1d5db; border-radius: 4px; }
+        .admin-form { margin-bottom: 1rem; }
+        .chart-container { background: #f1f5f9; border-radius: 8px; padding: 1rem; }
+        @media (max-width: 900px) {
+            .dashboard-cards { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <div class="admin-header">
+            <span class="admin-title"><i class="fas fa-cogs"></i> Admin Dashboard</span>
+            <a href="index-pure.html" class="btn-primary">Back to Shop</a>
+        </div>
+
+        <!-- Dashboard -->
+        <div class="dashboard-cards">
+            <div class="dashboard-card">
+                <div class="card-value" id="totalProducts">0</div>
+                <h3>Products</h3>
+            </div>
+            <div class="dashboard-card">
+                <div class="card-value" id="totalOrders">0</div>
+                <h3>Orders</h3>
+            </div>
+            <div class="dashboard-card">
+                <div class="card-value" id="totalRevenue">$0</div>
+                <h3>Revenue</h3>
+            </div>
+        </div>
+
+        <!-- CRUD Product -->
+        <div class="admin-section">
+            <div class="admin-section-title">Product Management</div>
+            <form class="admin-form" id="productForm">
+                <input type="hidden" id="productId">
+                <input type="text" id="productName" placeholder="Product Name" required>
+                <input type="number" id="productPrice" placeholder="Price" min="0" step="0.01" required>
+                <input type="text" id="productImage" placeholder="Image URL" required>
+                <button type="submit" class="btn-primary">Add Product</button>
+                <button type="button" id="cancelEdit" style="display:none;">Cancel</button>
+            </form>
+            <table class="product-table">
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="productTableBody"></tbody>
+            </table>
+        </div>
+
+        <!-- Chart -->
+        <div class="admin-section">
+            <div class="admin-section-title">Sales Chart</div>
+            <div class="chart-container">
+                <canvas id="salesChart" height="80"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // --- Dashboard Data (Fake for demo) ---
+        function updateDashboard() {
+            const products = JSON.parse(localStorage.getItem('adminProducts')) || [];
+            document.getElementById('totalProducts').textContent = products.length;
+            // Fake orders/revenue for demo
+            document.getElementById('totalOrders').textContent = 12;
+            document.getElementById('totalRevenue').textContent = '$' + (products.length * 50);
+        }
+
+        // --- CRUD Product ---
+        function renderProducts() {
+            const products = JSON.parse(localStorage.getItem('adminProducts')) || [];
+            const tbody = document.getElementById('productTableBody');
+            tbody.innerHTML = '';
+            products.forEach((p, idx) => {
+                tbody.innerHTML += `
+                    <tr>
+                        <td><img src="${p.image}" alt="${p.name}"></td>
+                        <td>${p.name}</td>
+                        <td>$${parseFloat(p.price).toFixed(2)}</td>
+                        <td class="crud-actions">
+                            <button onclick="editProduct(${idx})" class="btn-secondary">Edit</button>
+                            <button onclick="deleteProduct(${idx})" class="btn-danger">Delete</button>
+                        </td>
+                    </tr>
+                `;
+            });
+            updateDashboard();
+        }
+
+        function resetForm() {
+            document.getElementById('productId').value = '';
+            document.getElementById('productName').value = '';
+            document.getElementById('productPrice').value = '';
+            document.getElementById('productImage').value = '';
+            document.getElementById('cancelEdit').style.display = 'none';
+            document.querySelector('#productForm button[type="submit"]').textContent = 'Add Product';
+        }
+
+        document.getElementById('productForm').onsubmit = function(e) {
+            e.preventDefault();
+            const id = document.getElementById('productId').value;
+            const name = document.getElementById('productName').value;
+            const price = document.getElementById('productPrice').value;
+            const image = document.getElementById('productImage').value;
+            let products = JSON.parse(localStorage.getItem('adminProducts')) || [];
+            if (id) {
+                products[id] = { name, price, image };
+            } else {
+                products.push({ name, price, image });
+            }
+            localStorage.setItem('adminProducts', JSON.stringify(products));
+            renderProducts();
+            resetForm();
+        };
+
+        function editProduct(idx) {
+            const products = JSON.parse(localStorage.getItem('adminProducts')) || [];
+            const p = products[idx];
+            document.getElementById('productId').value = idx;
+            document.getElementById('productName').value = p.name;
+            document.getElementById('productPrice').value = p.price;
+            document.getElementById('productImage').value = p.image;
+            document.getElementById('cancelEdit').style.display = '';
+            document.querySelector('#productForm button[type="submit"]').textContent = 'Update Product';
+        }
+
+        function deleteProduct(idx) {
+            let products = JSON.parse(localStorage.getItem('adminProducts')) || [];
+            products.splice(idx, 1);
+            localStorage.setItem('adminProducts', JSON.stringify(products));
+            renderProducts();
+            resetForm();
+        }
+
+        document.getElementById('cancelEdit').onclick = resetForm;
+
+        // --- Chart ---
+        let salesChart;
+        function renderChart() {
+            const ctx = document.getElementById('salesChart').getContext('2d');
+            if (salesChart) salesChart.destroy();
+            // Fake data for demo
+            salesChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'Sales',
+                        data: [12, 19, 8, 15, 10, 17],
+                        backgroundColor: '#2563eb'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: { legend: { display: false } }
+                }
+            });
+        }
+
+        // --- Init ---
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProducts();
+            renderChart();
+        });
+    </script>
+    <script>
+        // filepath: d:\7430\webasm\asm2\admin.html
+        if (localStorage.getItem('isAdmin') !== 'true') {
+            window.location.href = "login-pure.html";
+        }
+    </script>
+</body>
+</html>

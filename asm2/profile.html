@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile | Knitted Delights</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style-pure.css">
+    <style>
+        .profile-container { max-width: 600px; margin: 3rem auto; background: #fff; border-radius: 8px; box-shadow: 0 2px 8px #0001; padding: 2rem; }
+        .profile-header { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem; }
+        .profile-avatar { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid #bc8a5c; }
+        .profile-info h2 { margin: 0; font-size: 1.5rem; font-weight: 700; }
+        .profile-info p { margin: 0.25rem 0; color: #555; }
+        .profile-section { margin-bottom: 2rem; }
+        .profile-label { font-weight: 600; color: #8b5a2b; }
+        .profile-value { margin-bottom: 0.5rem; }
+        .profile-actions { display: flex; justify-content: space-between; gap: 1rem; }
+        .btn-secondary, .btn-primary, .btn-logout { background: #bc8a5c; color: #fff; border: none; padding: 0.5rem 1.5rem; border-radius: 4px; cursor: pointer; }
+        .btn-secondary:hover, .btn-primary:hover, .btn-logout:hover { background: #8b5a2b; }
+        .edit-form { display: none; margin-top: 1rem; }
+        .edit-form input { margin-bottom: 0.5rem; width: 100%; padding: 0.5rem; border-radius: 4px; border: 1px solid #d1d5db; }
+        .edit-form label { font-weight: 600; color: #8b5a2b; }
+        .edit-form .form-actions { text-align: right; }
+    </style>
+</head>
+<body class="handmade-bg">
+    <div class="profile-container">
+        <div class="profile-header">
+            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Avatar" class="profile-avatar" id="profileAvatar">
+            <div class="profile-info">
+                <h2 id="profileName">Guest User</h2>
+                <p id="profileEmail">guest@example.com</p>
+            </div>
+        </div>
+        <div class="profile-section">
+            <div class="profile-label">Phone:</div>
+            <div class="profile-value" id="profilePhone">0969963481</div>
+            <div class="profile-label">Address:</div>
+            <div class="profile-value" id="profileAddress">K257/45B Phan Chau Trinh</div>
+        </div>
+        <div class="profile-actions">
+            <button class="btn-secondary" onclick="showEditForm()">Edit Profile</button>
+            <button class="btn-primary" onclick="window.location.href='shop-pure.html'">Go to Shop</button>
+            <button class="btn-logout" onclick="logout()">Logout</button>
+        </div>
+        <form class="edit-form" id="editForm">
+            <label>Name</label>
+            <input type="text" id="editName" required>
+            <label>Email</label>
+            <input type="email" id="editEmail" required>
+            <label>Phone</label>
+            <input type="text" id="editPhone" required>
+            <label>Address</label>
+            <input type="text" id="editAddress" required>
+            <label>Avatar URL</label>
+            <input type="text" id="editAvatar" required>
+            <div class="form-actions">
+                <button type="submit" class="btn-primary">Save</button>
+                <button type="button" class="btn-secondary" onclick="hideEditForm()">Cancel</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        // Hiển thị thông tin profile
+        function loadProfile() {
+            const user = JSON.parse(localStorage.getItem('profile')) || {
+                name: 'Guest User',
+                email: 'guest@example.com',
+                phone: '0969963481',
+                address: 'K257/45B Phan Chau Trinh',
+                avatar: 'https://randomuser.me/api/portraits/women/68.jpg'
+            };
+            document.getElementById('profileName').textContent = user.name;
+            document.getElementById('profileEmail').textContent = user.email;
+            document.getElementById('profilePhone').textContent = user.phone;
+            document.getElementById('profileAddress').textContent = user.address;
+            document.getElementById('profileAvatar').src = user.avatar;
+        }
+        document.addEventListener('DOMContentLoaded', loadProfile);
+
+        // Hiện form chỉnh sửa
+        function showEditForm() {
+            const user = JSON.parse(localStorage.getItem('profile')) || {};
+            document.getElementById('editName').value = user.name || '';
+            document.getElementById('editEmail').value = user.email || '';
+            document.getElementById('editPhone').value = user.phone || '';
+            document.getElementById('editAddress').value = user.address || '';
+            document.getElementById('editAvatar').value = user.avatar || '';
+            document.getElementById('editForm').style.display = 'block';
+        }
+        function hideEditForm() {
+            document.getElementById('editForm').style.display = 'none';
+        }
+
+        // Lưu thông tin chỉnh sửa
+        document.getElementById('editForm').onsubmit = function(e) {
+            e.preventDefault();
+            const user = {
+                name: document.getElementById('editName').value,
+                email: document.getElementById('editEmail').value,
+                phone: document.getElementById('editPhone').value,
+                address: document.getElementById('editAddress').value,
+                avatar: document.getElementById('editAvatar').value
+            };
+            localStorage.setItem('profile', JSON.stringify(user));
+            hideEditForm();
+            loadProfile();
+            alert('Profile updated!');
+        };
+
+        // Đăng xuất
+        function logout() {
+            localStorage.removeItem('profile');
+            window.location.href = 'login-pure.html';
+        }
+    </script>
+</body>
+</html>

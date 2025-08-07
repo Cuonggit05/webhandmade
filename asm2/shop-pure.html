@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop | Knitted Delights</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style-pure.css">
+    <style>
+        .cart-item {
+            position: relative;
+        }
+
+        .remove-item {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: #ef4444;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 1.5rem;
+            height: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .cart-item:hover .remove-item {
+            opacity: 1;
+        }
+
+        .remove-item:hover {
+            background: #dc2626;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body class="handmade-bg">
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="flex justify-between items-center">
+                <div>
+                    <span><i class="fas fa-phone mr-2"></i>0969963481</span>
+                </div>
+                <div>
+                    <span class="mr-4"><i class="fas fa-map-marker-alt mr-2"></i>Find our store</span>
+                    <span class="hidden md:inline"><i class="fas fa-truck mr-2"></i>Free shipping on orders over $50</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="flex items-center justify-between py-4">
+                <!-- Logo -->
+                <div class="logo">
+                    <i class="fas fa-hands logo-icon"></i>
+                    <div class="logo-text">
+                        <h1>Handcrafted Haven</h1>
+                        <p>Artisan-made treasures</p>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <nav class="nav-menu">
+                    <ul>
+                        <li><a href="index-pure.html">Home</a></li>
+                        <li><a href="shop-pure.html" class="active">Shop</a></li>
+                        <li><a href="categories-pure.html">Categories</a></li>
+                        <li><a href="artisans-pure.html">Artisans</a></li>
+                        <li><a href="about-pure.html">About</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Icons -->
+                <div class="header-icons">
+                    <div class="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">3</span>
+                        <div class="cart-preview">
+                            <h4 class="font-serif font-bold mb-3">Cart Preview</h4>
+                            <div class="cart-item">
+                                <img src="./images/Knitted Teddy Bear.png" class="cart-item-image" alt="Knitted Bear">
+                                <div>
+                                    <h5 class="font-medium">Knitted Teddy Bear</h5>
+                                    <p>1 x $35.00</p>
+                                </div>
+                            </div>
+                            <div class="cart-item">
+                                <img src="./images/Swet.png" class="cart-item-image" alt="Sweater">
+                                <div>
+                                    <h5 class="font-medium">Sweater handmade</h5>
+                                    <p>2 x $42.00</p>
+                                </div>
+                            </div>
+                            <div class="cart-total">
+                                <span>Total:</span>
+                                <span>$119.00</span>
+                            </div>
+                            <button class="btn-primary w-full py-2 rounded mt-4" onclick="window.location.href='checkout-pure.html'">Checkout</button>
+                        </div>
+                    </div>
+                    <a href="#" id="userIcon"><i class="fas fa-user"></i></a>
+                    <i class="fas fa-search"></i>
+                    <button class="mobile-menu-button">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Shop Section -->
+    <section class="py-16 bg-white">
+        <div class="container">
+            <div class="text-center mb-12">
+                <h1 class="section-title">Our Knitting Services</h1>
+                <div class="section-divider"></div>
+                <p class="mt-4 max-w-2xl mx-auto text-gray-600">Custom knitted items made with premium yarns. Order your perfect knitted bear, flower bouquet, or custom design today.</p>
+            </div>
+
+            <div class="product-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <img src="./images/Knitted Teddy Bear.png" alt="Knitted Bear" class="product-image">
+                        <div class="product-overlay">
+                            <button class="btn-primary">Quick View</button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <div class="product-header">
+                            <h3 class="product-title">Knitted Teddy Bear</h3>
+                            <span class="product-price">$35.00</span>
+                        </div>
+                        <p class="product-description">Lovingly hand-knitted from soft acrylic yarn – perfect for cuddles and keepsakes.</p>
+                        <div class="product-colors">
+                            <span class="product-color bg-brown-200 border-brown-300"></span>
+                            <span class="product-color bg-pink-200 border-pink-300"></span>
+                            <span class="product-color bg-blue-200 border-blue-300"></span>
+                        </div>
+                        <button class="btn-primary product-button">
+                            <i class="fas fa-shopping-cart product-button-icon"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <img src="./images/knitted hat.png" alt="Knitted Hat" class="product-image">
+                        <div class="product-overlay">
+                            <button class="btn-primary">Quick View</button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <div class="product-header">
+                            <h3 class="product-title">Knitted Hat</h3>
+                            <span class="product-price">$38.00</span>
+                        </div>
+                        <p class="product-description">Cute and cozy handmade hat with fluffy texture – ideal for little ones.</p>
+                        <div class="product-colors">
+                            <span class="product-color bg-orange-200 border-orange-300"></span>
+                            <span class="product-color bg-yellow-200 border-yellow-300"></span>
+                        </div>
+                        <button class="btn-primary product-button">
+                            <i class="fas fa-shopping-cart product-button-icon"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <img src="./images/handmade flowers.png" alt="Handmade Flowers" class="product-image">
+                        <div class="product-overlay">
+                            <button class="btn-primary">Quick View</button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <div class="product-header">
+                            <h3 class="product-title">Handmade Flowers</h3>
+                            <span class="product-price">$68.00</span>
+                        </div>
+                        <p class="product-description">Delicate hand-knitted bouquet – a sweet gift that lasts forever.</p>
+                        <div class="product-colors">
+                            <span class="product-color" style="background-color: #333; border-color: #000;"></span>
+                        </div>
+                        <button class="btn-primary product-button">
+                            <i class="fas fa-shopping-cart product-button-icon"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <div class="sale-badge bg-green-500">NEW</div>
+                    <div class="product-image-container">
+                        <img src="./images/Handmade keychain.png" alt="Handmade Keychain" class="product-image">
+                        <div class="product-overlay">
+                            <button class="btn-primary">Quick View</button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <div class="product-header">
+                            <h3 class="product-title">Handmade Keychain</h3>
+                            <span class="product-price">$28.00</span>
+                        </div>
+                        <p class="product-description">Adorable mini bear keychains – crafted with yarn for charm on the go.</p>
+                        <div class="product-colors">
+                            <span class="product-color bg-red-200 border-red-300"></span>
+                            <span class="product-color bg-blue-200 border-blue-300"></span>
+                            <span class="product-color bg-green-200 border-green-300"></span>
+                        </div>
+                        <button class="btn-primary product-button">
+                            <i class="fas fa-shopping-cart product-button-icon"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 5 -->
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <img src="./images/Swet.png" alt="Sweater Handmade" class="product-image">
+                        <div class="product-overlay">
+                            <button class="btn-primary">Quick View</button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <div class="product-header">
+                            <h3 class="product-title">Sweater Handmade</h3>
+                            <span class="product-price">$42.00</span>
+                        </div>
+                        <p class="product-description">Warm, colorful, and cozy – hand-knitted with care for little ones.</p>
+                        <div class="product-colors">
+                            <span class="product-color bg-brown-200 border-brown-300"></span>
+                            <span class="product-color" style="background-color: #000; border-color: #333;"></span>
+                        </div>
+                        <button class="btn-primary product-button">
+                            <i class="fas fa-shopping-cart product-button-icon"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="sale-badge bg-red-500">SALE</div>
+                    <div class="product-image-container">
+                        <img src="./images/Knitted Scarves.png" alt="Knitted Scarves" class="product-image">
+                        <div class="product-overlay">
+                            <button class="btn-primary">Quick View</button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <div class="product-header">
+                            <h3 class="product-title">Knitted Scarves</h3>
+                            <span class="product-price">
+                                <span class="product-price-original">$65.00</span> $52.00
+                            </span>
+                        </div>
+                        <p class="product-description">Soft and stylish – handcrafted scarves perfect for layering in any season.</p>
+                        <div class="product-colors">
+                            <span class="product-color" style="background-color: #fff; border-color: #ccc;"></span>
+                            <span class="product-color bg-beige-200 border-beige-300"></span>
+                        </div>
+                        <button class="btn-primary product-button">
+                            <i class="fas fa-shopping-cart product-button-icon"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 7 -->
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <img src="./images/Storage baskets made from yarn.png" alt="Storage Basket" class="product-image">
+                        <div class="product-overlay">
+                            <button class="btn-primary">Quick View</button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <div class="product-header">
+                            <h3 class="product-title">Storage Basket</h3>
+                            <span class="product-price">$38.00</span>
+                        </div>
+                        <p class="product-description">Beautifully crocheted baskets – perfect for organizing your cozy corners.</p>
+                        <div class="product-colors">
+                            <span class="product-color bg-copper-200 border-copper-300"></span>
+                        </div>
+                        <button class="btn-primary product-button">
+                            <i class="fas fa-shopping-cart product-button-icon"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 8 -->
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <img src="./images/wallet.png" alt="Coin Purse" class="product-image">
+                        <div class="product-overlay">
+                            <button class="btn-primary">Quick View</button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <div class="product-header">
+                            <h3 class="product-title">Coin Purse</h3>
+                            <span class="product-price">$32.00</span>
+                        </div>
+                        <p class="product-description">Charming and compact – hand-crocheted pouches for coins or small treasures.</p>
+                        <div class="product-colors">
+                            <span class="product-color" style="background-color: #e5e7eb; border-color: #d1d5db;"></span>
+                            <span class="product-color bg-blue-200 border-blue-300"></span>
+                            <span class="product-color bg-green-200 border-green-300"></span>
+                        </div>
+                        <button class="btn-primary product-button">
+                            <i class="fas fa-shopping-cart product-button-icon"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-10">
+                <button class="btn-primary">View All Products</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-logo">
+                        <i class="fas fa-hands footer-logo-icon"></i>
+                        <h2 class="footer-logo-text">Knitted Delights</h2>
+                    </div>
+                    <p class="footer-description">Specializing in custom knitted items including bears, flowers, and personalized designs. Made to order with premium yarns.</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="footer-heading">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index-pure.html">Home</a></li>
+                        <li><a href="shop-pure.html">Shop</a></li>
+                        <li><a href="categories-pure.html">Categories</a></li>
+                        <li><a href="artisans-pure.html">Our Artisans</a></li>
+                        <li><a href="about-pure.html">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="footer-heading">Customer Care</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Shipping Policy</a></li>
+                        <li><a href="#">Returns & Exchanges</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Store Locator</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="footer-heading">Contact Us</h3>
+                    <ul>
+                        <li class="footer-contact-item">
+                            <i class="fas fa-map-marker-alt footer-contact-icon"></i>
+                            <span>K257/45B Phan Chau Trinh</span>
+                        </li>
+                        <li class="footer-contact-item">
+                            <i class="fas fa-phone footer-contact-icon"></i>
+                            <span>0969963481</span>
+                        </li>
+                        <li class="footer-contact-item">
+                            <i class="fas fa-envelope footer-contact-icon"></i>
+                            <span>support@handcraftedhaven.com</span>
+                        </li>
+                        <li class="footer-contact-item">
+                            <i class="fas fa-clock footer-contact-icon"></i>
+                            <span>Mon-Fri: 9am - 6pm PST<br>Sat-Sun: 10am - 4pm PST</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 Knitted Delights. All rights reserved.</p>
+                <p>Designed with <i class="fas fa-heart"></i> by Thai Cuong</p>
+        </div>
+    </footer>
+
+    <!-- Auth Modals -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Login</h3>
+                <button onclick="closeModal('loginModal')" class="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="email" name="email" required class="form-input">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" name="password" required class="form-input">
+                </div>
+                <div class="form-help">
+                    <div class="form-check">
+                        <input type="checkbox" id="remember" name="remember" class="form-check-input">
+                        <label for="remember" class="form-check-label">Remember me</label>
+                    </div>
+                    <a href="#" class="form-link">Forgot password?</a>
+                </div>
+                <button type="submit" class="btn-primary w-full">Login</button>
+                
+                <div class="form-divider">
+                    <div class="form-divider-line"></div>
+                    <div class="form-divider-text">
+                        <span>Or continue with</span>
+                    </div>
+                </div>
+                
+                <div class="social-buttons">
+                    <button type="button" class="social-button">
+                        <i class="fab fa-google social-button-icon google"></i>
+                        <span>Google</span>
+                    </button>
+                    <button type="button" class="social-button">
+                        <i class="fab fa-facebook-f social-button-icon facebook"></i>
+                        <span>Facebook</span>
+                    </button>
+                </div>
+                
+                <div class="form-footer">
+                    <p class="form-footer-text">Don't have an account? 
+                        <a href="#" onclick="showRegister()" class="form-footer-link">Register</a>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Register</h3>
+                <button onclick="closeModal('registerModal')" class="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="registerForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">First Name</label>
+                        <input type="text" name="firstName" required class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Last Name</label>
+                        <input type="text" name="lastName" required class="form-input">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="email" name="email" required class="form-input">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" name="password" required minlength="8" class="form-input">
+                    <p class="form-help-text">Minimum 8 characters</p>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Confirm Password</label>
+                    <input type="password" name="confirmPassword" required class="form-input">
+                </div>
+                <div class="form-group">
+                    <div class="form-check">
+                        <input type="checkbox" id="terms" name="terms" required class="form-check-input">
+                        <label for="terms" class="form-check-label">
+                            I agree to the <a href="#" class="form-link">Terms of Service</a> and <a href="#" class="form-link">Privacy Policy</a>
+                        </label>
+                    </div>
+                </div>
+                <button type="submit" class="btn-primary w-full">Create Account</button>
+                
+                <div class="form-divider">
+                    <div class="form-divider-line"></div>
+                    <div class="form-divider-text">
+                        <span>Or sign up with</span>
+                    </div>
+                </div>
+                
+                <div class="social-buttons">
+                    <button type="button" class="social-button">
+                        <i class="fab fa-google social-button-icon google"></i>
+                        <span>Google</span>
+                    </button>
+                    <button type="button" class="social-button">
+                        <i class="fab fa-facebook-f social-button-icon facebook"></i>
+                        <span>Facebook</span>
+                    </button>
+                </div>
+                
+                <div class="form-footer">
+                    <p class="form-footer-text">Already have an account? 
+                        <a href="#" onclick="showLogin()" class="form-footer-link">Login</a>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Quick View Modal -->
+    <div id="quickViewModal" class="modal">
+        <div class="modal-content quick-view-modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Product Details</h3>
+                <button onclick="closeQuickView()" class="modal-close">
+                    <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="modal-body">
+            <!-- Content will be dynamically inserted here -->
+        </div>
+    </div>
+</div>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Cart management
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        // Product data
+        const products = [
+            {
+                id: 1,
+                name: "Knitted Teddy Bear",
+                price: 35.00,
+                originalPrice: null,
+                image: "./images/Knitted Teddy Bear.png",
+                description: "Lovingly hand-knitted from soft acrylic yarn – perfect for cuddles and keepsakes.",
+                colors: ["Brown", "Pink", "Blue"],
+                category: "Toys",
+                inStock: true,
+                details: "Made with premium acrylic yarn, this adorable teddy bear is perfect for children and collectors alike. Each bear is carefully crafted by hand with attention to every detail."
+            },
+            {
+                id: 2,
+                name: "Knitted Hat",
+                price: 38.00,
+                originalPrice: null,
+                image: "./images/knitted hat.png",
+                description: "Cute and cozy handmade hat with fluffy texture – ideal for little ones.",
+                colors: ["Orange", "Yellow"],
+                category: "Accessories",
+                inStock: true,
+                details: "Warm and comfortable knitted hat perfect for cold weather. Made with soft yarn that's gentle on sensitive skin."
+            },
+            {
+                id: 3,
+                name: "Handmade Flowers",
+                price: 68.00,
+                originalPrice: null,
+                image: "./images/handmade flowers.png",
+                description: "Delicate hand-knitted bouquet – a sweet gift that lasts forever.",
+                colors: ["Mixed"],
+                category: "Decor",
+                inStock: true,
+                details: "Beautiful handcrafted flower bouquet that never wilts. Perfect for home decoration or as a lasting gift for someone special."
+            },
+            {
+                id: 4,
+                name: "Handmade Keychain",
+                price: 28.00,
+                originalPrice: null,
+                image: "./images/Handmade keychain.png",
+                description: "Adorable mini bear keychains – crafted with yarn for charm on the go.",
+                colors: ["Red", "Blue", "Green"],
+                category: "Accessories",
+                inStock: true,
+                details: "Cute mini bear keychains perfect for keys, bags, or as small gifts. Each keychain is uniquely handmade with love."
+            },
+            {
+                id: 5,
+                name: "Sweater Handmade",
+                price: 42.00,
+                originalPrice: null,
+                image: "./images/Swet.png",
+                description: "Warm, colorful, and cozy – hand-knitted with care for little ones.",
+                colors: ["Brown", "Black"],
+                category: "Clothing",
+                inStock: true,
+                details: "Comfortable and stylish handmade sweater perfect for children. Made with high-quality yarn for durability and comfort."
+            },
+            {
+                id: 6,
+                name: "Knitted Scarves",
+                price: 52.00,
+                originalPrice: 65.00,
+                image: "./images/Knitted Scarves.png",
+                description: "Soft and stylish – handcrafted scarves perfect for layering in any season.",
+                colors: ["White", "Beige"],
+                category: "Accessories",
+                inStock: true,
+                details: "Elegant and warm knitted scarves perfect for any season. Made with premium yarn for ultimate comfort and style."
+            },
+            {
+                id: 7,
+                name: "Storage Basket",
+                price: 38.00,
+                originalPrice: null,
+                image: "./images/Storage baskets made from yarn.png",
+                description: "Beautifully crocheted baskets – perfect for organizing your cozy corners.",
+                colors: ["Copper"],
+                category: "Home",
+                inStock: true,
+                details: "Functional and beautiful storage solution for your home. Handcrafted with durable yarn to organize your space in style."
+            },
+            {
+                id: 8,
+                name: "Coin Purse",
+                price: 32.00,
+                originalPrice: null,
+                image: "./images/wallet.png",
+                description: "Charming and compact – hand-crocheted pouches for coins or small treasures.",
+                colors: ["Gray", "Blue", "Green"],
+                category: "Accessories",
+                inStock: true,
+                details: "Practical and cute coin purse perfect for carrying small items. Each purse is carefully handcrafted with attention to detail."
+            }
+        ];
+
+        // Update cart display
+        function updateCartDisplay() {
+            const cartCount = document.querySelector('.cart-count');
+            const cartPreview = document.querySelector('.cart-preview');
+            
+            // Update cart count
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalItems;
+            
+            // Update cart preview
+            const cartItemsContainer = cartPreview.querySelector('.cart-item').parentElement;
+            cartItemsContainer.innerHTML = '<h4 class="font-serif font-bold mb-3">Cart Preview</h4>';
+            
+            let total = 0;
+            cart.forEach(item => {
+                const cartItemDiv = document.createElement('div');
+                cartItemDiv.className = 'cart-item';
+                cartItemDiv.innerHTML = `
+                    <img src="${item.image}" class="cart-item-image" alt="${item.name}">
+                    <div>
+                        <h5 class="font-medium">${item.name}</h5>
+                        <p>${item.quantity} x $${item.price.toFixed(2)}</p>
+                    </div>
+                    <button onclick="removeFromCart(${item.id})" class="remove-item">
+                        <i class="fas fa-times"></i>
+                    </button>
+                `;
+                cartItemsContainer.appendChild(cartItemDiv);
+                total += item.price * item.quantity;
+            });
+            
+            // Update total
+            const existingTotal = cartPreview.querySelector('.cart-total');
+            const existingCheckout = cartPreview.querySelector('.btn-primary');
+            
+            if (existingTotal) existingTotal.remove();
+            if (existingCheckout) existingCheckout.remove();
+            
+            const cartTotalDiv = document.createElement('div');
+            cartTotalDiv.className = 'cart-total';
+            cartTotalDiv.innerHTML = `
+                <span>Total:</span>
+                <span>$${total.toFixed(2)}</span>
+            `;
+            cartPreview.appendChild(cartTotalDiv);
+            
+            const checkoutBtn = document.createElement('button');
+            checkoutBtn.className = 'btn-primary w-full py-2 rounded mt-4';
+            checkoutBtn.textContent = 'Checkout';
+            cartPreview.appendChild(checkoutBtn);
+
+            // Thêm dòng này để chuyển trang khi click
+            checkoutBtn.onclick = function() {
+                window.location.href = 'checkout-pure.html';
+            };
+        }
+
+        // Add to cart function
+        function addToCart(productId, button) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+            
+            // Check if product already in cart
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    image: product.image,
+                    quantity: 1
+                });
+            }
+            
+            // Lưu cart vào localStorage
+            localStorage.setItem('cart', JSON.stringify(cart));
+            
+            // Update cart display
+            updateCartDisplay();
+            
+            // Add animation to button
+            const originalText = button.innerHTML;
+            button.innerHTML = '<i class="fas fa-check"></i> Added!';
+            button.style.background = 'linear-gradient(135deg, #22c55e, #16a34a)';
+            button.disabled = true;
+            
+            // Cart icon animation
+            const cartIcon = document.querySelector('.cart-icon');
+            cartIcon.style.animation = 'bounce 0.6s ease';
+            
+            setTimeout(() => {
+                button.innerHTML = originalText;
+                button.style.background = '';
+                button.disabled = false;
+                cartIcon.style.animation = '';
+            }, 2000);
+            
+            // Show success message
+            showNotification('Product added to cart!', 'success');
+        }
+
+        // Remove from cart function
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            // Lưu cart vào localStorage
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartDisplay();
+            showNotification('Product removed from cart!', 'info');
+        }
+
+        // Show Quick View modal
+        function showQuickView(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+            
+            const modal = document.getElementById('quickViewModal');
+            const modalContent = modal.querySelector('.modal-body');
+            
+            modalContent.innerHTML = `
+                <div class="quick-view-content">
+                    <div class="quick-view-image">
+                        <img src="${product.image}" alt="${product.name}" class="product-detail-image">
+                        ${product.originalPrice ? '<div class="sale-badge bg-red-500">SALE</div>' : ''}
+                    </div>
+                    <div class="quick-view-details">
+                        <h2 class="product-detail-title">${product.name}</h2>
+                        <div class="product-detail-price">
+                            ${product.originalPrice ? 
+                                `<span class="product-price-original">$${product.originalPrice.toFixed(2)}</span>` : 
+                                ''
+                            }
+                            <span class="product-price">$${product.price.toFixed(2)}</span>
+                        </div>
+                        <p class="product-detail-description">${product.description}</p>
+                        <div class="product-detail-info">
+                            <p><strong>Category:</strong> ${product.category}</p>
+                            <p><strong>Available Colors:</strong> ${product.colors.join(', ')}</p>
+                            <p><strong>Stock:</strong> ${product.inStock ? 'In Stock' : 'Out of Stock'}</p>
+                        </div>
+                        <div class="product-detail-full-description">
+                            <p>${product.details}</p>
+                        </div>
+                        <div class="product-detail-actions">
+                            <button onclick="addToCart(${product.id}, this)" class="btn-primary product-detail-btn">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                            <button onclick="closeQuickView()" class="btn-outline">Close</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close Quick View modal
+        function closeQuickView() {
+            const modal = document.getElementById('quickViewModal');
+            modal.classList.remove('show');
+            document.body.style.overflow = '';
+        }
+
+        // Show notification
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : 'info-circle'}"></i>
+                <span>${message}</span>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 100);
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+
+        // Back to top button functionality
+        const backToTop = document.getElementById("backToTop");
+
+        window.addEventListener("scroll", () => {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add("show");
+            } else {
+                backToTop.classList.remove("show");
+            }
+        });
+
+        backToTop.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+            });
+        });
+
+        // Modal functions
+        function showLogin() {
+            document.getElementById("loginModal").classList.add("show");
+            document.getElementById("registerModal").classList.remove("show");
+        }
+
+        function showRegister() {
+            document.getElementById("registerModal").classList.add("show");
+            document.getElementById("loginModal").classList.remove("show");
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.remove("show");
+        }
+
+        // Close modals when clicking outside
+        window.addEventListener("click", (event) => {
+            if (event.target.classList.contains("modal")) {
+                event.target.classList.remove("show");
+            }
+        });
+
+        // Form handling
+        document.addEventListener("DOMContentLoaded", () => {
+            const loginForm = document.getElementById("loginForm");
+            const registerForm = document.getElementById("registerForm");
+
+            if (loginForm) {
+                loginForm.addEventListener("submit", function (e) {
+                    e.preventDefault();
+                    const formData = new FormData(this);
+                    const data = Object.fromEntries(formData);
+
+                    console.log("Login data:", data);
+                    alert("Login functionality would connect to backend");
+                    closeModal("loginModal");
+                });
+            }
+
+            if (registerForm) {
+                registerForm.addEventListener("submit", function (e) {
+                    e.preventDefault();
+                    const formData = new FormData(this);
+                    const data = Object.fromEntries(formData);
+
+                    if (data.password !== data.confirmPassword) {
+                        alert("Passwords do not match!");
+                        return;
+                    }
+
+                    console.log("Register data:", data);
+                    alert("Registration successful! Please check your email to verify your account.");
+                    closeModal("registerModal");
+                    showLogin();
+                });
+            }
+            
+            // Initialize cart display
+            updateCartDisplay();
+            
+            // Add event listeners to product buttons
+            document.querySelectorAll('.product-button').forEach((button, index) => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    addToCart(index + 1, button);
+                });
+            });
+            
+            // Add event listeners to quick view buttons
+            document.querySelectorAll('.product-overlay .btn-primary').forEach((button, index) => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showQuickView(index + 1);
+                });
+            });
+        });
+
+        // Chuyển icon user sang profile nếu đã đăng nhập
+        document.addEventListener('DOMContentLoaded', function() {
+            const userIcon = document.getElementById('userIcon');
+            if (userIcon) {
+                userIcon.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    // Nếu đã đăng nhập (có profile trong localStorage) thì sang profile
+                    if (localStorage.getItem('profile')) {
+                        window.location.href = 'profile.html';
+                    } else {
+                        window.location.href = 'login-pure.html';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
